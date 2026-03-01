@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Uploader — Etsy Listing Management Tool</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0d1117;
+            color: #e6edf3;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 60px 24px 80px;
+        }
+
+        header {
+            margin-bottom: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid #21262d;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #f0f6fc;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: #8b949e;
+            font-size: 0.95rem;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #f0f6fc;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #21262d;
+        }
+
+        p {
+            color: #c9d1d9;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            color: #c9d1d9;
+            font-size: 0.95rem;
+        }
+
+        ul li::before {
+            content: "•";
+            position: absolute;
+            left: 4px;
+            color: #58a6ff;
+        }
+
+        ul li strong {
+            color: #e6edf3;
+            font-weight: 500;
+        }
+
+        .endpoint-list li {
+            font-family: 'SF Mono', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 0.85rem;
+            color: #79c0ff;
+            padding: 4px 0 4px 20px;
+        }
+
+        .endpoint-list li::before {
+            color: #484f58;
+        }
+
+        .scope-list li {
+            font-family: 'SF Mono', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 0.88rem;
+        }
+
+        .scope-list li code {
+            color: #79c0ff;
+        }
+
+        .notice {
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 6px;
+            padding: 16px 20px;
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: #8b949e;
+        }
+
+        .notice p {
+            color: #8b949e;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .notice p:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-info {
+            color: #8b949e;
+            font-size: 0.9rem;
+        }
+
+        .contact-info a {
+            color: #58a6ff;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 24px;
+            border-top: 1px solid #21262d;
+            color: #484f58;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Template Uploader</h1>
+            <p>Etsy Listing Management Tool</p>
+        </header>
+
+        <section>
+            <h2>Overview</h2>
+            <p>Template Uploader is a personal-use application built to manage digital product listings in the Etsy shop <strong>"TheRogueSmith"</strong> (<a href="https://etsy.com/shop/TheRogueSmith" style="color:#58a6ff;text-decoration:none;">etsy.com/shop/TheRogueSmith</a>). It automates the process of creating, updating, and organizing listings for Notion templates and Google Sheets dashboard products.</p>
+            <p>This application is used exclusively by the shop owner to manage their own listings. It does not access any third-party shops or user data.</p>
+        </section>
+
+        <section>
+            <h2>Features</h2>
+            <ul>
+                <li><strong>Batch Listing Creation</strong> — Creates draft listings with titles, descriptions, tags, pricing, and digital file attachments for template products</li>
+                <li><strong>Shop Section Management</strong> — Organizes listings into categorized shop sections (e.g., "Notion Budget &amp; Finance Templates", "Google Sheets Finance Dashboards")</li>
+                <li><strong>Listing Image Upload</strong> — Attaches product mockup images to listings</li>
+                <li><strong>Shop Profile Updates</strong> — Updates shop title, announcement, and digital sale messages to keep the storefront current</li>
+                <li><strong>Inventory Management</strong> — Updates listing quantities and pricing in bulk</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>API Endpoints Used</h2>
+            <ul class="endpoint-list">
+                <li>PUT /v3/application/shops/{shop_id} — Update shop details</li>
+                <li>POST /v3/application/shops/{shop_id}/sections — Create shop sections</li>
+                <li>POST /v3/application/shops/{shop_id}/listings — Create draft listings</li>
+                <li>PUT /v3/application/shops/{shop_id}/listings/{listing_id} — Update listings</li>
+                <li>POST /v3/application/shops/{shop_id}/listings/{listing_id}/images — Upload images</li>
+                <li>POST /v3/application/shops/{shop_id}/listings/{listing_id}/files — Upload digital files</li>
+                <li>GET /v3/application/shops/{shop_id}/listings — Retrieve listings</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Access Level</h2>
+            <p>Personal use only. This application accesses a single shop owned and operated by the developer. No third-party shop data is accessed or stored.</p>
+        </section>
+
+        <section>
+            <h2>OAuth Scopes</h2>
+            <ul class="scope-list">
+                <li><code>shops_r</code>, <code>shops_w</code> — Read and update shop details and sections</li>
+                <li><code>listings_r</code>, <code>listings_w</code> — Read, create, and update listings</li>
+                <li><code>listings_d</code> — Delete draft listings if needed</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Data Handling</h2>
+            <ul>
+                <li>No user data is collected, stored, or shared</li>
+                <li>OAuth tokens are stored locally on the developer's machine only</li>
+                <li>The application runs locally via command line — it is not a hosted web service</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Compliance</h2>
+            <p>This application complies with Etsy's API Terms of Use:</p>
+            <ul>
+                <li><strong>Section 3</strong> — Application only accesses the developer's own shop data</li>
+                <li><strong>Section 5</strong> — No scraping, no circumventing API, no unauthorized data collection</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Contact</h2>
+            <div class="contact-info">
+                <p>Developer: Blas Prieto</p>
+                <p>Email: <a href="mailto:prieto.blas@gmail.com">prieto.blas@gmail.com</a></p>
+                <p>Shop: <a href="https://etsy.com/shop/TheRogueSmith">etsy.com/shop/TheRogueSmith</a></p>
+            </div>
+        </section>
+
+        <footer>
+            <div class="notice">
+                <p>"Etsy" is a trademark of Etsy, Inc. This application uses the Etsy API but is not endorsed or certified by Etsy, Inc.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
